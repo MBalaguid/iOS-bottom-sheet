@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:iOSBottomSheet/bottom.dart';
+import 'package:iOSBottomSheet/const.dart';
 
 void main() {
   runApp(iOSheet());
@@ -12,6 +14,14 @@ class iOSheet extends StatefulWidget {
 class _iOSheetState extends State<iOSheet> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: darkColor,
+        body: Container(
+          child: bottombutton(),
+        ),
+      ),
+    );
   }
 }
