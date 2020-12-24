@@ -8,9 +8,9 @@ class bottombutton extends StatefulWidget {
 }
 
 class _bottombuttonState extends State<bottombutton> {
-  bool _IsOpeen = true;
+  bool _IsOpeen = false;
   bool _IsRotat = true;
-  bool _IsFinis = true;
+  bool _IsFinis = false;
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +23,20 @@ class _bottombuttonState extends State<bottombutton> {
             child: Container(),
           ),
 
-          Visibility(
-            visible: !_IsRotat,
+          AnimatedOpacity(
+            opacity: !_IsRotat ? 1 : 0,
+            duration: Duration(milliseconds: 400),
             child: Padding(
               padding: EdgeInsets.only(
                 right: (!_IsOpeen) ? 22.5 : 15,
                 left: 15,
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Visibility(
-                    visible: !_IsOpeen && !_IsFinis,
+                  AnimatedOpacity(
+                    opacity: !_IsOpeen ? 1 : 0,
+                    duration: Duration(milliseconds: 400),
                     child: Column(
                       children: [
                         Container(
@@ -193,7 +196,8 @@ class _bottombuttonState extends State<bottombutton> {
                   _IsRotat = !_IsRotat;
                   setState(() {});
                 },
-                child: Container(
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 400),
                   height: 60,
                   width: (!_IsOpeen) ? 60 : MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
