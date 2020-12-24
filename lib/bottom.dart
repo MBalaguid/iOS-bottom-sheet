@@ -10,6 +10,7 @@ class bottombutton extends StatefulWidget {
 class _bottombuttonState extends State<bottombutton> {
   bool _IsOpeen = true;
   bool _IsRotat = true;
+  bool _IsFinis = true;
 
   @override
   Widget build(BuildContext context) {
@@ -23,118 +24,154 @@ class _bottombuttonState extends State<bottombutton> {
           ),
 
           Visibility(
-            visible: _IsOpeen,
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: 15,
-                right: 15,
-              ),
-              child: Container(
-                height: 185,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(18)),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(15),
-                      child: Container(
-                        height: 45,
-                        decoration: BoxDecoration(
-                          color: greyColor,
-                          borderRadius: BorderRadius.all(Radius.circular(12)),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Icon(
-                              CupertinoIcons.search,
-                              color: blckColor,
-                              size: 25,
-                            ),
-                            Text(
-                              "Search by name or phone number",
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 15),
-                      child: Text(
-                        "Recents",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: blckColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-
-          Visibility(
             visible: !_IsRotat,
             child: Padding(
-              padding: EdgeInsets.only(right: 22.5),
+              padding: EdgeInsets.only(
+                right: (!_IsOpeen) ? 22.5 : 15,
+                left: 15,
+              ),
               child: Column(
                 children: [
-                  Container(
-                    height: 45,
-                    width: 45,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                      color: Colors.white,
-                    ),
-                    child: Icon(
-                      CupertinoIcons.plus,
-                      color: blckColor,
+                  Visibility(
+                    visible: !_IsOpeen && !_IsFinis,
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 45,
+                          width: 45,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                            color: Colors.white,
+                          ),
+                          child: Icon(
+                            CupertinoIcons.plus,
+                            color: blckColor,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 45,
+                          width: 45,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                            color: Colors.white,
+                          ),
+                          child: Icon(
+                            CupertinoIcons.share,
+                            color: blckColor,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 45,
-                    width: 45,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                      color: Colors.white,
-                    ),
-                    child: Icon(
-                      CupertinoIcons.share,
-                      color: blckColor,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
+
+                  //Search button
                   GestureDetector(
                     onTap: () {
                       _IsOpeen = !_IsOpeen;
-                      _IsRotat = !_IsRotat;
+                      //_IsRotat = !_IsRotat;
                       setState(() {});
                     },
-                    child: Container(
-                      height: 45,
-                      width: 45,
+                    child: AnimatedContainer(
+                      onEnd: () {
+                        _IsFinis = !_IsFinis;
+                        setState(() {});
+                      },
+                      duration: Duration(milliseconds: 400),
+                      height: (!_IsOpeen) ? 45 : 185,
+                      width:
+                          (!_IsOpeen) ? 45 : MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        borderRadius: BorderRadius.all(
+                            Radius.circular((!_IsOpeen) ? 50 : 18)),
                         color: Colors.white,
                       ),
-                      child: Icon(
-                        CupertinoIcons.search,
-                        color: blckColor,
-                      ),
+                      child: (!_IsOpeen)
+                          ? Icon(
+                              CupertinoIcons.search,
+                              color: blckColor,
+                            )
+                          : AnimatedOpacity(
+                              opacity: _IsFinis ? 1.0 : 0.0,
+                              duration: Duration(milliseconds: 400),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(15),
+                                    child: Container(
+                                      height: 45,
+                                      decoration: BoxDecoration(
+                                        color: greyColor,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(12)),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Icon(
+                                            CupertinoIcons.search,
+                                            color: blckColor,
+                                            size: 25,
+                                          ),
+                                          Text(
+                                            "Search by name or phone number",
+                                          ),
+                                          SizedBox(
+                                            width: 6,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 15),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Recents",
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            color: blckColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Column(
+                                          children: [
+                                            Container(
+                                              height: 50,
+                                              width: 50,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(50)),
+                                                color: blueColor,
+                                              ),
+                                            ),
+                                            Text(
+                                              "User N.",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                     ),
                   ),
                 ],
