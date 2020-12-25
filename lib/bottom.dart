@@ -10,8 +10,17 @@ class bottombutton extends StatefulWidget {
 
 class _bottombuttonState extends State<bottombutton> {
   bool _IsOpeen = false;
-  bool _IsRotat = true;
   bool _IsFinis = false;
+  bool _UpSizes = false;
+  bool _IsRotat = true;
+  double _Sizes = 185;
+
+  void updateSize(bool Sze) {
+    setState(() {
+      _UpSizes = Sze;
+      print(_UpSizes);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +99,7 @@ class _bottombuttonState extends State<bottombutton> {
                             setState(() {});
                           },
                           duration: Duration(milliseconds: 400),
-                          height: (!_IsOpeen) ? 45 : 185,
+                          height: (!_IsOpeen) ? 45 : _Sizes,
                           width: (!_IsOpeen)
                               ? 45
                               : MediaQuery.of(context).size.width,
@@ -113,28 +122,22 @@ class _bottombuttonState extends State<bottombutton> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.all(15),
-                                        child: searchbar(
-                                            "Search by name or phone number"),
-                                        // child: Container(
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            _UpSizes = !_UpSizes;
 
-                                        //   child: Row(
-                                        //     mainAxisAlignment:
-                                        //         MainAxisAlignment.spaceAround,
-                                        //     children: [
-                                        //       Icon(
-                                        //         CupertinoIcons.search,
-                                        //         color: blckColor,
-                                        //         size: 25,
-                                        //       ),
-                                        //       Text(
-                                        //         "Search by name or phone number",
-                                        //       ),
-                                        //       SizedBox(
-                                        //         width: 6,
-                                        //       ),
-                                        //     ],
-                                        //   ),
-                                        // ),
+                                            // if (_UpSizes)
+                                            //   _Sizes = MediaQuery.of(context)
+                                            //       .size
+                                            //       .height;
+                                            // else
+                                            //   _Sizes = 185;
+                                            setState(() {});
+                                          },
+                                          child: searchbar(
+                                            "Search by name or phone number",
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),

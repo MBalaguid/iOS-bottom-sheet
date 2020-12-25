@@ -13,7 +13,7 @@ class _searchbarState extends State<searchbar> {
   String _Title;
   _searchbarState(this._Title);
   var _Text = TextEditingController();
-  bool _TextState = false;
+  bool _TextState = true;
 
   @override
   Widget build(BuildContext context) {
