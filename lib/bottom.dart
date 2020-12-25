@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iOSBottomSheet/const.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:iOSBottomSheet/searchbar.dart';
 
 class bottombutton extends StatefulWidget {
   @override
@@ -112,72 +113,28 @@ class _bottombuttonState extends State<bottombutton> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.all(15),
-                                        child: Container(
-                                          height: 45,
-                                          decoration: BoxDecoration(
-                                            color: greyColor,
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(12)),
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Icon(
-                                                CupertinoIcons.search,
-                                                color: blckColor,
-                                                size: 25,
-                                              ),
-                                              Text(
-                                                "Search by name or phone number",
-                                              ),
-                                              SizedBox(
-                                                width: 6,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 15),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Recents",
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                                color: blckColor,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            Column(
-                                              children: [
-                                                Container(
-                                                  height: 50,
-                                                  width: 50,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                50)),
-                                                    color: blueColor,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "User N.",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                        child: searchbar(
+                                            "Search by name or phone number"),
+                                        // child: Container(
+
+                                        //   child: Row(
+                                        //     mainAxisAlignment:
+                                        //         MainAxisAlignment.spaceAround,
+                                        //     children: [
+                                        //       Icon(
+                                        //         CupertinoIcons.search,
+                                        //         color: blckColor,
+                                        //         size: 25,
+                                        //       ),
+                                        //       Text(
+                                        //         "Search by name or phone number",
+                                        //       ),
+                                        //       SizedBox(
+                                        //         width: 6,
+                                        //       ),
+                                        //     ],
+                                        //   ),
+                                        // ),
                                       ),
                                     ],
                                   ),
