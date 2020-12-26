@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iOSBottomSheet/const.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:iOSBottomSheet/searchbar.dart';
 
 class bottombutton extends StatefulWidget {
   @override
@@ -9,11 +8,18 @@ class bottombutton extends StatefulWidget {
 }
 
 class _bottombuttonState extends State<bottombutton> {
+  var _Text = TextEditingController();
   bool _IsOpeen = false;
   bool _IsFinis = false;
   bool _UpSizes = false;
   bool _IsRotat = true;
+  bool _TextState = true;
   double _Sizes = 185;
+
+  Future<bool> _ButtonBack() {
+    _IsRotat = !_IsRotat;
+    setState(() {});
+  }
 
   void updateSize(bool Sze) {
     setState(() {
@@ -30,6 +36,7 @@ class _bottombuttonState extends State<bottombutton> {
           bottom: 0,
           right: 0,
           left: 0,
+          top: 0,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -122,21 +129,99 @@ class _bottombuttonState extends State<bottombutton> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.all(15),
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            _UpSizes = !_UpSizes;
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              height: 45,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              decoration: BoxDecoration(
+                                                color: greyColor,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(12)),
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 15),
+                                                child: TextField(
+                                                  onChanged: (text) {
+                                                    if (text.length == 0)
+                                                      _TextState = true;
+                                                    else
+                                                      _TextState = false;
 
-                                            // if (_UpSizes)
-                                            //   _Sizes = MediaQuery.of(context)
-                                            //       .size
-                                            //       .height;
-                                            // else
-                                            //   _Sizes = 185;
-                                            setState(() {});
-                                          },
-                                          child: searchbar(
-                                            "Search by name or phone number",
-                                          ),
+                                                    setState(() {});
+                                                  },
+                                                  controller: _Text,
+                                                  decoration: InputDecoration(
+                                                    border: InputBorder.none,
+                                                    hintText:
+                                                        "Search by name or phone number",
+                                                    icon: IconButton(
+                                                      onPressed: () {
+                                                        _Text.clear();
+                                                        _TextState = true;
+                                                        setState(() {});
+                                                      },
+                                                      icon: Icon(
+                                                        _TextState
+                                                            ? CupertinoIcons
+                                                                .search
+                                                            : CupertinoIcons
+                                                                .clear,
+                                                        color: blckColor,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  "Recents",
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    color: blckColor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Column(
+                                                  children: [
+                                                    Container(
+                                                      height: 50,
+                                                      width: 50,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    50)),
+                                                        color: blueColor,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      "User N.",
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ],
@@ -150,45 +235,49 @@ class _bottombuttonState extends State<bottombutton> {
               ),
 
               //float button
-              Padding(
-                padding: EdgeInsets.all(15),
-                child: GestureDetector(
-                  onTap: () {
-                    _IsRotat = !_IsRotat;
-                    setState(() {});
-                  },
+              WillPopScope(
+                onWillPop: _ButtonBack,
+                child: Padding(
+                  padding: EdgeInsets.all(15),
                   child: GestureDetector(
                     onTap: () {
-                      if (_IsOpeen) _IsOpeen = !_IsOpeen;
                       _IsRotat = !_IsRotat;
                       setState(() {});
                     },
-                    child: AnimatedContainer(
-                      duration: Duration(milliseconds: 400),
-                      height: 60,
-                      width:
-                          (!_IsOpeen) ? 60 : MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(100)),
-                        color: blueColor,
-                      ),
-                      child: (!_IsOpeen)
-                          ? Icon(
-                              (_IsRotat) ? CupertinoIcons.plus : Icons.close,
-                              color: Colors.white,
-                              size: 32,
-                            )
-                          : Center(
-                              child: Text(
-                                "CANCEL",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: "Lato",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                    child: GestureDetector(
+                      onTap: () {
+                        if (_IsOpeen) _IsOpeen = !_IsOpeen;
+                        _IsRotat = !_IsRotat;
+                        setState(() {});
+                      },
+                      child: AnimatedContainer(
+                        duration: Duration(milliseconds: 400),
+                        height: 60,
+                        width: (!_IsOpeen)
+                            ? 60
+                            : MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
+                          color: blueColor,
+                        ),
+                        child: (!_IsOpeen)
+                            ? Icon(
+                                (_IsRotat) ? CupertinoIcons.plus : Icons.close,
+                                color: Colors.white,
+                                size: 32,
+                              )
+                            : Center(
+                                child: Text(
+                                  "CANCEL",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: "Lato",
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
                                 ),
                               ),
-                            ),
+                      ),
                     ),
                   ),
                 ),
