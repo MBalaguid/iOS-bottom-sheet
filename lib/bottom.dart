@@ -17,6 +17,7 @@ class _bottombuttonState extends State<bottombutton> {
   double _Sizes = 185;
 
   Future<bool> _ButtonBack() {
+    if (_IsOpeen) _IsOpeen = !_IsOpeen;
     _IsRotat = !_IsRotat;
     setState(() {});
   }
@@ -36,7 +37,6 @@ class _bottombuttonState extends State<bottombutton> {
           bottom: 0,
           right: 0,
           left: 0,
-          top: 0,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -121,7 +121,8 @@ class _bottombuttonState extends State<bottombutton> {
                                   color: blckColor,
                                 )
                               : AnimatedOpacity(
-                                  opacity: _IsFinis ? 1.0 : 0.0,
+                                  opacity:
+                                      (_IsFinis || _Sizes > 185) ? 1.0 : 0.0,
                                   duration: Duration(milliseconds: 400),
                                   child: Column(
                                     crossAxisAlignment:
@@ -152,6 +153,24 @@ class _bottombuttonState extends State<bottombutton> {
                                                       _TextState = true;
                                                     else
                                                       _TextState = false;
+                                                    if (text.length > 0)
+                                                      _Sizes = MediaQuery.of(
+                                                                  context)
+                                                              .size
+                                                              .height -
+                                                          EdgeInsets.fromWindowPadding(
+                                                                  WidgetsBinding
+                                                                      .instance
+                                                                      .window
+                                                                      .viewInsets,
+                                                                  WidgetsBinding
+                                                                      .instance
+                                                                      .window
+                                                                      .devicePixelRatio)
+                                                              .bottom -
+                                                          200;
+                                                    else
+                                                      _Sizes = 185;
 
                                                     setState(() {});
                                                   },
