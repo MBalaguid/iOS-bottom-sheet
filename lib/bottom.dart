@@ -216,27 +216,80 @@ class _bottombuttonState extends State<bottombutton> {
                                                 SizedBox(
                                                   height: 10,
                                                 ),
-                                                Column(
-                                                  children: [
-                                                    Container(
-                                                      height: 50,
-                                                      width: 50,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    50)),
-                                                        color: blueColor,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      "User N.",
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                  ],
+
+                                                //cardView
+                                                Container(
+                                                  child: (!(_Sizes != 185))
+                                                      ? Column(
+                                                          children: [
+                                                            Container(
+                                                              height: 50,
+                                                              width: 50,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            50)),
+                                                                color:
+                                                                    blueColor,
+                                                              ),
+                                                            ),
+                                                            Text(
+                                                              ("_UserName".length <
+                                                                      7)
+                                                                  ? "_UserName"
+                                                                  : "_UserName"
+                                                                          .substring(
+                                                                              0,
+                                                                              7) ??
+                                                                      "User N.",
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      : Row(
+                                                          children: [
+                                                            Container(
+                                                              height: 50,
+                                                              width: 50,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            50)),
+                                                                color:
+                                                                    blueColor,
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left: 15),
+                                                              child: Column(
+                                                                children: [
+                                                                  Text(
+                                                                    "_UserName",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                    ),
+                                                                  ),
+                                                                  Text(
+                                                                    "Hello World",
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                 ),
                                               ],
                                             ),
