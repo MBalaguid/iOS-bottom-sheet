@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iOSBottomSheet/account.dart';
 import 'package:iOSBottomSheet/const.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -157,6 +158,19 @@ class _BottombuttonState extends State<Bottombutton> {
                                                     EdgeInsets.only(right: 15),
                                                 child: TextField(
                                                   onChanged: (text) {
+                                                    acc.clear();
+                                                    for (int i = 0;
+                                                        i < ac.length;
+                                                        i++)
+                                                      if (ac[i].name.startsWith(
+                                                          _text.text)) {
+                                                        print(ac[i].name +
+                                                            " | " +
+                                                            acc.length
+                                                                .toString());
+                                                        acc.add(ac[i]);
+                                                      }
+
                                                     if (text.length == 0)
                                                       _textState = true;
                                                     else
@@ -235,7 +249,7 @@ class _BottombuttonState extends State<Bottombutton> {
                                                   child: ListView.builder(
                                                     padding:
                                                         EdgeInsets.only(top: 0),
-                                                    itemCount: 10,
+                                                    itemCount: acc.length,
                                                     scrollDirection:
                                                         (_sizes > 185)
                                                             ? Axis.vertical
@@ -254,23 +268,16 @@ class _BottombuttonState extends State<Bottombutton> {
                                                               (!(_sizes > 185))
                                                                   ? Column(
                                                                       children: [
-                                                                        Container(
-                                                                          height:
-                                                                              50,
-                                                                          width:
-                                                                              50,
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.all(Radius.circular(50)),
-                                                                            color:
-                                                                                blueColor,
-                                                                          ),
+                                                                        CircleAvatar(
+                                                                          radius:
+                                                                              25,
+                                                                          backgroundImage:
+                                                                              NetworkImage(acc[index].pics),
                                                                         ),
                                                                         Text(
-                                                                          ("_UserName".length < 7)
-                                                                              ? "_UserName"
-                                                                              : "_UserName".substring(0, 7) ?? "User N.",
+                                                                          (acc[index].name.length < 7)
+                                                                              ? acc[index].name
+                                                                              : acc[index].name.substring(0, 7) ?? acc[index].name,
                                                                           style:
                                                                               TextStyle(
                                                                             fontWeight:
@@ -281,33 +288,28 @@ class _BottombuttonState extends State<Bottombutton> {
                                                                     )
                                                                   : Row(
                                                                       children: [
-                                                                        Container(
-                                                                          height:
-                                                                              50,
-                                                                          width:
-                                                                              50,
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.all(Radius.circular(50)),
-                                                                            color:
-                                                                                blueColor,
-                                                                          ),
+                                                                        CircleAvatar(
+                                                                          radius:
+                                                                              25,
+                                                                          backgroundImage:
+                                                                              NetworkImage(acc[index].pics),
                                                                         ),
                                                                         Padding(
                                                                           padding:
                                                                               EdgeInsets.only(left: 15),
                                                                           child:
                                                                               Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
                                                                             children: [
                                                                               Text(
-                                                                                "_UserName",
+                                                                                acc[index].name,
                                                                                 style: TextStyle(
                                                                                   fontWeight: FontWeight.w600,
                                                                                 ),
                                                                               ),
                                                                               Text(
-                                                                                "Hello World",
+                                                                                acc[index].subn,
                                                                               ),
                                                                             ],
                                                                           ),
