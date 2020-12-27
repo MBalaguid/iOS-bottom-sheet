@@ -18,8 +18,14 @@ class _BottombuttonState extends State<Bottombutton> {
 
   Future<bool> _buttonBack() {
     if (_isOpeen) _isOpeen = !_isOpeen;
+    if (_isRotat) return Future.value(true);
+    if (_sizes > 185) {
+      _sizes = 185;
+      _isFinis = true;
+    }
     _isRotat = !_isRotat;
     setState(() {});
+    return Future.value(false);
   }
 
   void updateSize(bool sze) {
