@@ -220,11 +220,15 @@ class _BottombuttonState extends State<Bottombutton> {
                                                 ),
 
                                                 //CardScroll
-                                                Container(
+                                                AnimatedContainer(
+                                                  duration: Duration(
+                                                      milliseconds: 500),
                                                   height: (_sizes > 185)
                                                       ? _sizes - 118
                                                       : 67,
                                                   child: ListView.builder(
+                                                    padding:
+                                                        EdgeInsets.only(top: 0),
                                                     itemCount: 10,
                                                     scrollDirection:
                                                         (_sizes > 185)
@@ -241,7 +245,7 @@ class _BottombuttonState extends State<Bottombutton> {
                                                                 right: 5),
                                                         child: Container(
                                                           child:
-                                                              (!(_sizes != 185))
+                                                              (!(_sizes > 185))
                                                                   ? Column(
                                                                       children: [
                                                                         Container(

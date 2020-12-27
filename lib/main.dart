@@ -3,15 +3,15 @@ import 'package:iOSBottomSheet/bottom.dart';
 import 'package:iOSBottomSheet/const.dart';
 
 void main() {
-  runApp(iOSheet());
+  runApp(IOSheet());
 }
 
-class iOSheet extends StatefulWidget {
+class IOSheet extends StatefulWidget {
   @override
-  _iOSheetState createState() => _iOSheetState();
+  _IOSheetState createState() => _IOSheetState();
 }
 
-class _iOSheetState extends State<iOSheet> {
+class _IOSheetState extends State<IOSheet> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
