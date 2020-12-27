@@ -2,30 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:iOSBottomSheet/const.dart';
 import 'package:flutter/cupertino.dart';
 
-class bottombutton extends StatefulWidget {
+class Bottombutton extends StatefulWidget {
   @override
-  _bottombuttonState createState() => _bottombuttonState();
+  _BottombuttonState createState() => _BottombuttonState();
 }
 
-class _bottombuttonState extends State<bottombutton> {
-  var _Text = TextEditingController();
-  bool _IsOpeen = false;
-  bool _IsFinis = false;
-  bool _UpSizes = false;
-  bool _IsRotat = true;
-  bool _TextState = true;
-  double _Sizes = 185;
+class _BottombuttonState extends State<Bottombutton> {
+  var _text = TextEditingController();
+  bool _isOpeen = false;
+  bool _isFinis = false;
+  bool _upSizes = false;
+  bool _isRotat = true;
+  bool _textState = true;
+  double _sizes = 185;
 
-  Future<bool> _ButtonBack() {
-    if (_IsOpeen) _IsOpeen = !_IsOpeen;
-    _IsRotat = !_IsRotat;
+  Future<bool> _buttonBack() {
+    if (_isOpeen) _isOpeen = !_isOpeen;
+    _isRotat = !_isRotat;
     setState(() {});
   }
 
-  void updateSize(bool Sze) {
+  void updateSize(bool sze) {
     setState(() {
-      _UpSizes = Sze;
-      print(_UpSizes);
+      _upSizes = sze;
+      print(_upSizes);
     });
   }
 
@@ -42,18 +42,18 @@ class _bottombuttonState extends State<bottombutton> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               AnimatedOpacity(
-                opacity: !_IsRotat ? 1 : 0,
+                opacity: !_isRotat ? 1 : 0,
                 duration: Duration(milliseconds: 400),
                 child: Padding(
                   padding: EdgeInsets.only(
-                    right: (!_IsOpeen) ? 22.5 : 15,
+                    right: (!_isOpeen) ? 22.5 : 15,
                     left: 15,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       AnimatedOpacity(
-                        opacity: !_IsOpeen ? 1 : 0,
+                        opacity: !_isOpeen ? 1 : 0,
                         duration: Duration(milliseconds: 400),
                         child: Column(
                           children: [
@@ -96,33 +96,35 @@ class _bottombuttonState extends State<bottombutton> {
                       //Search button
                       GestureDetector(
                         onTap: () {
-                          _IsOpeen = !_IsOpeen;
-                          //_IsRotat = !_IsRotat;
+                          _isOpeen = !_isOpeen;
+                          //_isRotat = !_isRotat;
                           setState(() {});
                         },
                         child: AnimatedContainer(
                           onEnd: () {
-                            _IsFinis = !_IsFinis;
+                            _isFinis = !_isFinis;
                             setState(() {});
                           },
-                          duration: Duration(milliseconds: 400),
-                          height: (!_IsOpeen) ? 45 : _Sizes,
-                          width: (!_IsOpeen)
+                          duration: (!_isOpeen)
+                              ? Duration(milliseconds: 300)
+                              : Duration(milliseconds: 500),
+                          height: (!_isOpeen) ? 45 : _sizes,
+                          width: (!_isOpeen)
                               ? 45
                               : MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(
-                                Radius.circular((!_IsOpeen) ? 50 : 18)),
+                                Radius.circular((!_isOpeen) ? 50 : 18)),
                             color: Colors.white,
                           ),
-                          child: (!_IsOpeen)
+                          child: (!_isOpeen)
                               ? Icon(
                                   CupertinoIcons.search,
                                   color: blckColor,
                                 )
                               : AnimatedOpacity(
                                   opacity:
-                                      (_IsFinis || _Sizes > 185) ? 1.0 : 0.0,
+                                      (_isFinis || _sizes > 185) ? 1.0 : 0.0,
                                   duration: Duration(milliseconds: 400),
                                   child: Column(
                                     crossAxisAlignment:
@@ -150,11 +152,11 @@ class _bottombuttonState extends State<bottombutton> {
                                                 child: TextField(
                                                   onChanged: (text) {
                                                     if (text.length == 0)
-                                                      _TextState = true;
+                                                      _textState = true;
                                                     else
-                                                      _TextState = false;
+                                                      _textState = false;
                                                     if (text.length > 0)
-                                                      _Sizes = MediaQuery.of(
+                                                      _sizes = MediaQuery.of(
                                                                   context)
                                                               .size
                                                               .height -
@@ -170,23 +172,23 @@ class _bottombuttonState extends State<bottombutton> {
                                                               .bottom -
                                                           200;
                                                     else
-                                                      _Sizes = 185;
+                                                      _sizes = 185;
 
                                                     setState(() {});
                                                   },
-                                                  controller: _Text,
+                                                  controller: _text,
                                                   decoration: InputDecoration(
                                                     border: InputBorder.none,
                                                     hintText:
                                                         "Search by name or phone number",
                                                     icon: IconButton(
                                                       onPressed: () {
-                                                        _Text.clear();
-                                                        _TextState = true;
+                                                        _text.clear();
+                                                        _textState = true;
                                                         setState(() {});
                                                       },
                                                       icon: Icon(
-                                                        _TextState
+                                                        _textState
                                                             ? CupertinoIcons
                                                                 .search
                                                             : CupertinoIcons
@@ -217,79 +219,95 @@ class _bottombuttonState extends State<bottombutton> {
                                                   height: 10,
                                                 ),
 
-                                                //cardView
+                                                //CardScroll
                                                 Container(
-                                                  child: (!(_Sizes != 185))
-                                                      ? Column(
-                                                          children: [
-                                                            Container(
-                                                              height: 50,
-                                                              width: 50,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            50)),
-                                                                color:
-                                                                    blueColor,
-                                                              ),
-                                                            ),
-                                                            Text(
-                                                              ("_UserName".length <
-                                                                      7)
-                                                                  ? "_UserName"
-                                                                  : "_UserName"
-                                                                          .substring(
-                                                                              0,
-                                                                              7) ??
-                                                                      "User N.",
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        )
-                                                      : Row(
-                                                          children: [
-                                                            Container(
-                                                              height: 50,
-                                                              width: 50,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            50)),
-                                                                color:
-                                                                    blueColor,
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      left: 15),
-                                                              child: Column(
-                                                                children: [
-                                                                  Text(
-                                                                    "_UserName",
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
+                                                  height: (_sizes > 185)
+                                                      ? _sizes - 118
+                                                      : 67,
+                                                  child: ListView.builder(
+                                                    itemCount: 10,
+                                                    scrollDirection:
+                                                        (_sizes > 185)
+                                                            ? Axis.vertical
+                                                            : Axis.horizontal,
+                                                    itemBuilder:
+                                                        (context, index) {
+                                                      return //cardView
+                                                          Padding(
+                                                        padding: (_sizes > 185)
+                                                            ? EdgeInsets.only(
+                                                                bottom: 5)
+                                                            : EdgeInsets.only(
+                                                                right: 5),
+                                                        child: Container(
+                                                          child:
+                                                              (!(_sizes != 185))
+                                                                  ? Column(
+                                                                      children: [
+                                                                        Container(
+                                                                          height:
+                                                                              50,
+                                                                          width:
+                                                                              50,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.all(Radius.circular(50)),
+                                                                            color:
+                                                                                blueColor,
+                                                                          ),
+                                                                        ),
+                                                                        Text(
+                                                                          ("_UserName".length < 7)
+                                                                              ? "_UserName"
+                                                                              : "_UserName".substring(0, 7) ?? "User N.",
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    )
+                                                                  : Row(
+                                                                      children: [
+                                                                        Container(
+                                                                          height:
+                                                                              50,
+                                                                          width:
+                                                                              50,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.all(Radius.circular(50)),
+                                                                            color:
+                                                                                blueColor,
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding:
+                                                                              EdgeInsets.only(left: 15),
+                                                                          child:
+                                                                              Column(
+                                                                            children: [
+                                                                              Text(
+                                                                                "_UserName",
+                                                                                style: TextStyle(
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                ),
+                                                                              ),
+                                                                              Text(
+                                                                                "Hello World",
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ],
                                                                     ),
-                                                                  ),
-                                                                  Text(
-                                                                    "Hello World",
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ],
                                                         ),
+                                                      );
+                                                    },
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -308,33 +326,33 @@ class _bottombuttonState extends State<bottombutton> {
 
               //float button
               WillPopScope(
-                onWillPop: _ButtonBack,
+                onWillPop: _buttonBack,
                 child: Padding(
                   padding: EdgeInsets.all(15),
                   child: GestureDetector(
                     onTap: () {
-                      _IsRotat = !_IsRotat;
+                      _isRotat = !_isRotat;
                       setState(() {});
                     },
                     child: GestureDetector(
                       onTap: () {
-                        if (_IsOpeen) _IsOpeen = !_IsOpeen;
-                        _IsRotat = !_IsRotat;
+                        if (_isOpeen) _isOpeen = !_isOpeen;
+                        _isRotat = !_isRotat;
                         setState(() {});
                       },
                       child: AnimatedContainer(
                         duration: Duration(milliseconds: 400),
                         height: 60,
-                        width: (!_IsOpeen)
+                        width: (!_isOpeen)
                             ? 60
                             : MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(100)),
                           color: blueColor,
                         ),
-                        child: (!_IsOpeen)
+                        child: (!_isOpeen)
                             ? Icon(
-                                (_IsRotat) ? CupertinoIcons.plus : Icons.close,
+                                (_isRotat) ? CupertinoIcons.plus : Icons.close,
                                 color: Colors.white,
                                 size: 32,
                               )

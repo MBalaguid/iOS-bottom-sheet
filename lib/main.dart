@@ -34,7 +34,7 @@ class _iOSheetState extends State<iOSheet> {
                   ),
                 ],
               ),
-              bottombutton(),
+              Bottombutton(),
             ],
           ),
         ),
