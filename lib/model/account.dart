@@ -8,7 +8,7 @@ class Account {
 
 List<Account> ac = [
   Account("mohamed balaguid", "BLVCKGHOST",
-      "https://cdn.intra.42.fr/users/small_mbalagui.jpg"),
+      "https://avatars2.githubusercontent.com/u/55538999?s=460&u=91d926c03c4d48ecd93f5630d1ebb717b8a8f72a&v=4"),
   Account("karim achedmi", "scratch",
       "https://cdn.intra.42.fr/users/small_achedmi.jpg"),
   Account("moussa bitami", "Gruz",
