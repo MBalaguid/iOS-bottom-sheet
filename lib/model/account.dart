@@ -10,7 +10,7 @@ List<Account> ac = [
   Account("mohamed balaguid", "BLVCKGHOST",
       "https://avatars2.githubusercontent.com/u/55538999?s=460&u=91d926c03c4d48ecd93f5630d1ebb717b8a8f72a&v=4"),
   Account("karim achedmi", "scratch",
-      "https://cdn.intra.42.fr/users/small_achedmi.jpg"),
+      "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/1679ac54975d94566938e934ceba3941-1607721659820/3363db01-2291-4971-a68a-0fc980ca8e01.png"),
   Account("moussa bitami", "Gruz",
       "https://cdn.intra.42.fr/users/small_mbistami.jpg"),
   Account("yassine achchab", "ghostsniper",
