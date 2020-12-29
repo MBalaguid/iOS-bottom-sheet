@@ -103,6 +103,15 @@ class _BottombuttonState extends State<Bottombutton> {
                                     borderRadius: BorderRadius.all(
                                         Radius.circular((!_isiplus) ? 50 : 18)),
                                     color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 5,
+                                        blurRadius: 7,
+                                        offset: Offset(
+                                            0, 3), // changes position of shadow
+                                      ),
+                                    ],
                                   ),
                                   child: _isiplus
                                       ? AnimatedOpacity(
@@ -197,6 +206,15 @@ class _BottombuttonState extends State<Bottombutton> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(50)),
                                     color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 5,
+                                        blurRadius: 7,
+                                        offset: Offset(
+                                            0, 3), // changes position of shadow
+                                      ),
+                                    ],
                                   ),
                                   child: Icon(
                                     CupertinoIcons.share,
@@ -237,6 +255,15 @@ class _BottombuttonState extends State<Bottombutton> {
                               borderRadius: BorderRadius.all(
                                   Radius.circular((!_isOpeen) ? 50 : 18)),
                               color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(
+                                      0, 3), // changes position of shadow
+                                ),
+                              ],
                             ),
                             child: (!_isOpeen)
                                 ? Icon(
