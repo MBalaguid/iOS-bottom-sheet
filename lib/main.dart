@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iOSBottomSheet/bottom.dart';
+import 'package:iOSBottomSheet/view/bottom.dart';
 import 'package:iOSBottomSheet/const.dart';
 
 void main() {
@@ -16,6 +16,10 @@ class _IOSheetState extends State<IOSheet> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        backgroundColor: darkColor,
+        primaryColor: blueColor,
+      ),
       home: Scaffold(
         backgroundColor: darkColor,
         body: Container(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iOSBottomSheet/account.dart';
+import 'package:iOSBottomSheet/model/account.dart';
 import 'package:iOSBottomSheet/const.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -60,43 +60,70 @@ class _BottombuttonState extends State<Bottombutton> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       AnimatedOpacity(
-                        opacity: !_isOpeen ? 1 : 0,
-                        duration: Duration(milliseconds: 400),
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 45,
-                              width: 45,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50)),
-                                color: Colors.white,
+                        opacity: _isRotat ? 0 : 1,
+                        duration: _isRotat
+                            ? Duration(microseconds: 1000)
+                            : Duration(milliseconds: 1000),
+                        child: //plusButton
+                            AnimatedOpacity(
+                          opacity: !_isOpeen ? 1 : 0,
+                          duration: _isOpeen
+                              ? Duration(milliseconds: 300)
+                              : Duration(milliseconds: 600),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 45,
+                                width: 45,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(50)),
+                                  color: Colors.white,
+                                ),
+                                child: Icon(
+                                  CupertinoIcons.plus,
+                                  color: blckColor,
+                                ),
                               ),
-                              child: Icon(
-                                CupertinoIcons.plus,
-                                color: blckColor,
+                              SizedBox(
+                                height: 10,
                               ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                              height: 45,
-                              width: 45,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50)),
-                                color: Colors.white,
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      AnimatedOpacity(
+                        opacity: _isRotat ? 0 : 1,
+                        duration: _isRotat
+                            ? Duration(microseconds: 800)
+                            : Duration(milliseconds: 800),
+                        child: //ShareButton
+                            AnimatedOpacity(
+                          opacity: !_isOpeen ? 1 : 0,
+                          duration: (!_isOpeen)
+                              ? Duration(milliseconds: 400)
+                              : Duration(milliseconds: 500),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 45,
+                                width: 45,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(50)),
+                                  color: Colors.white,
+                                ),
+                                child: Icon(
+                                  CupertinoIcons.share,
+                                  color: blckColor,
+                                ),
                               ),
-                              child: Icon(
-                                CupertinoIcons.share,
-                                color: blckColor,
+                              SizedBox(
+                                height: 10,
                               ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
 
@@ -162,14 +189,12 @@ class _BottombuttonState extends State<Bottombutton> {
                                                     for (int i = 0;
                                                         i < ac.length;
                                                         i++)
-                                                      if (ac[i].name.startsWith(
-                                                          _text.text)) {
-                                                        print(ac[i].name +
-                                                            " | " +
-                                                            acc.length
-                                                                .toString());
+                                                      if (ac[i]
+                                                          .name
+                                                          .toLowerCase()
+                                                          .startsWith(_text.text
+                                                              .toLowerCase()))
                                                         acc.add(ac[i]);
-                                                      }
 
                                                     if (text.length == 0)
                                                       _textState = true;
@@ -272,7 +297,7 @@ class _BottombuttonState extends State<Bottombutton> {
                                                                           radius:
                                                                               25,
                                                                           backgroundImage:
-                                                                              NetworkImage(acc[index].pics),
+                                                                              NetworkImage(acc[index].pics) ?? blueColor,
                                                                         ),
                                                                         Text(
                                                                           (acc[index].name.length < 7)
