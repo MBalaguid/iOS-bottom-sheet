@@ -1,6 +1,7 @@
 # iOSBottomSheet
 
 Animated floating action button using flutter.
+![VID-180941231-112139-560](https://user-images.githubusercontent.com/55538999/103463466-d86f3a80-4d2c-11eb-9437-98be7d9b34d7.GIF)
 
 ## Getting Started
 
