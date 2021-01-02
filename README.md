@@ -1,6 +1,6 @@
 # iOSBottomSheet
 
-A new Flutter project.
+Animated floating action button using flutter.
 
 ## Getting Started
 
