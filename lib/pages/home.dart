@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
     return Stack(
       children: [
         //
-        ListView(
+        /*ListView(
           children: [
             Padding(
               padding: EdgeInsets.all(15),
@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 15),
-                    child: Stories("Add", ""),
+                    //child: Stories("Add", ""),
                   ),
                   for (int i = 0; i < acc.length; i++)
                     Padding(
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
             ),
             for (int i = 0; i < acc.length; i++) Posts(acc[i].pics),
           ],
-        ),
+        ),*/
         Bottombutton(),
       ],
     );
